@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星际塔防游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 星际塔防</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="label">金币:</span>
+                    <span id="gold" class="value">500</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">生命:</span>
+                    <span id="health" class="value">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">波次:</span>
+                    <span id="wave" class="value">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">得分:</span>
+                    <span id="score" class="value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="game-area">
+                <canvas id="gameCanvas" width="1000" height="600"></canvas>
+                <div id="gameOverlay" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">游戏结束!</h2>
+                        <p id="overlayText"></p>
+                        <button onclick="location.reload()">重新开始</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-section">
+                    <h3>🛡️ 防御塔</h3>
+                    <div class="tower-list">
+                        <div class="tower-card" data-tower="gun">
+                            <div class="tower-icon">🔫</div>
+                            <div class="tower-name">机枪塔</div>
+                            <div class="tower-cost">💰 100</div>
+                            <div class="tower-desc">快速射击，伤害低</div>
+                            <button onclick="selectTower('gun')">选择</button>
+                        </div>
+                        <div class="tower-card" data-tower="laser">
+                            <div class="tower-icon">⚡</div>
+                            <div class="tower-name">激光塔</div>
+                            <div class="tower-cost">💰 200</div>
+                            <div class="tower-desc">高伤害，范围小</div>
+                            <button onclick="selectTower('laser')">选择</button>
+                        </div>
+                        <div class="tower-card" data-tower="ice">
+                            <div class="tower-icon">❄️</div>
+                            <div class="tower-name">冰冻塔</div>
+                            <div class="tower-cost">💰 150</div>
+                            <div class="tower-desc">减速敌人，伤害中等</div>
+                            <button onclick="selectTower('ice')">选择</button>
+                        </div>
+                        <div class="tower-card" data-tower="bomb">
+                            <div class="tower-icon">💣</div>
+                            <div class="tower-name">炸弹塔</div>
+                            <div class="tower-cost">💰 250</div>
+                            <div class="tower-desc">范围伤害，冷却时间长</div>
+                            <button onclick="selectTower('bomb')">选择</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>📊 当前选择</h3>
+                    <div id="selectedTowerInfo" class="tower-info">
+                        <p>点击左侧塔选择</p>
+                    </div>
+                    <button id="clearBtn" onclick="clearSelection()" class="hidden">取消选择</button>
+                </div>
+
+                <div class="panel-section">
+                    <h3>⚙️ 操作</h3>
+                    <button onclick="startWave()" id="startWaveBtn">开始波次</button>
+                    <button onclick="togglePause()" id="pauseBtn">暂停</button>
+                    <p class="tips">💡 左键点击放置塔，右键点击升级或删除</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
